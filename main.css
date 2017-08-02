@@ -1,0 +1,163 @@
+/* General layout options */
+
+html, body, h1, h2, h3, p, ul, li, a {
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.wrapper > ul > li
+{
+  font-size: 115%;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 1% 0.5% 0% 0.5%;
+  max-width: 1000px;
+}
+
+body {
+  background-color: #FFFFFF;
+  background: linear-gradient(to bottom, #5a76f2, #FFFFFF);
+}
+
+h3 {
+  font-family: Tahoma, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 150%;
+  margin-bottom: 1%;
+  padding: 1% 0 1% 0;
+  text-align: center;
+}
+
+a  {
+  text-decoration: none;
+  color: #1235DC;
+}
+
+/* Header section */
+
+header {
+  background-color: #1235DC;
+  background: linear-gradient(to right, #1235DC, #4664F0, #1235DC);
+  box-shadow: 0px 0px 10px #000000;
+  color: #FFFFFF;
+  margin: auto 0;
+  padding: 1% 0% 1% 0%;
+  text-align: center;
+}
+
+header img {
+  border-radius: 50%;
+  box-shadow: 0px 0px 25px #FFFFFF;
+  float: center;
+  max-width: 150px;
+  max-height: 150px;
+}
+
+
+header h1 {
+  font-size: 450%;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+header h2 {
+  font-size: 250%;
+}
+
+/* Summary box */
+
+#summary {
+  background-color: #FFFFFF;
+  background: linear-gradient(to bottom, #C8D0FB, #FFFFFF);
+  box-shadow: 0px 0px 10px #000000;
+  padding: 3%;
+  text-align: justify;
+}
+
+#summary div {
+  padding-bottom: 3%;
+}
+
+#skills li{
+  display: inline;
+  font-family: "Courier New", sans-serif;
+  font-size: 125%;
+  padding: 0% 2.5%;
+}
+
+#skills ul{
+  text-align: center;
+  padding-top: 2%;
+}
+
+#contact > p{
+  text-align: center;
+}
+
+/* Training box */
+
+#training {
+  background-color: #FFFFFF;
+  background: linear-gradient(to bottom, #C8D0FB, #FFFFFF);
+  box-shadow: 0px 0px 10px #000000;
+  padding: 3% 0 3% 0;
+  margin: 0 auto 0 auto;
+}
+
+#badges {
+  margin: auto 0;
+  padding-top: 2%;
+  padding-bottom: 3%;
+  text-align: center;
+}
+
+.course {
+  display: inline-block;
+  margin-left: -32px;
+  margin-right: -32px;
+  max-height: 220px;
+  max-width: 220px;
+}
+
+.course a img {
+  height: 60%;
+  width: 60%;
+}
+
+/* Javascript Example box */
+
+#javaScriptExample {
+  background-color: #FFFFFF;
+  background: linear-gradient(to bottom, #C8D0FB, #FFFFFF);
+  box-shadow: 0px 0px 10px #000000;
+  padding: 3%;
+  margin-bottom: 2%;
+  text-align: justify;
+}
+
+#javaScriptExample li {
+  border-top: 1px solid #000000;
+  font-size: 115%;
+  font-weight: bold;
+  list-style-type: none;
+  padding: 2% 0 2% 0;
+}
+
+#javaScriptExample p {
+  font-style: italic;
+  padding-bottom: 1%;
+}
+
+#javaScriptExample div {
+  padding-bottom: 5%;
+}
