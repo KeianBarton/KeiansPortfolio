@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="stylesheet" href="main.css">
+  <script src="scripts/pdfScript.js"></script>
   <title>Keian's Portfolio Page</title>
 </head>
 <body>
@@ -21,9 +22,10 @@
             <p>I'm a Graduate Software Engineer with a high first-class degree in Mathematics and 1 year’s experience in the data analytics industry.
               My razor sharp attention to detail, combined with my friendly approach, allows me to be a positive driving force in any team that I work.
               Check out
-              <a href="cv/KeianBartonCVAug2017.pdf", target="_blank">my CV</a>
+              <button type="button" onclick="toggleCvPdf()">my CV</button>
               for more details.
             </p>
+            <iframe id="cvPDFFrame" style="display:none" height=500></iframe>
           </div>
           <div id="skills">
             <h3>Technologies</h3>

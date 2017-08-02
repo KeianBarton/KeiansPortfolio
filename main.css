@@ -84,8 +84,12 @@ header h2 {
   text-align: justify;
 }
 
-#summary div {
+#summary > div {
   padding-bottom: 3%;
+}
+
+#cvPDFFrame {
+  width: 100%
 }
 
 #skills li{
