@@ -1,5 +1,5 @@
 function toggleCvPdf() {
-  var pdfFrame = document.getElementById("cvPDFFrame");
+  var pdfFrame = document.getElementById("cvPdfFrame");
   if (pdfFrame.style.display == "block") {
     pdfFrame.style.display = "none";
     return;

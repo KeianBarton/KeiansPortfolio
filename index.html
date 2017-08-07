@@ -4,10 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="stylesheet" href="main.css">
+  <!-- Script to showcase CV PDF -->
   <script src="scripts/pdfScript.js"></script>
+  <!-- Scripts to run example Javascript game -->
+  <script src="scripts/exampleGame/Program.js"></script>
+  <script src="scripts/exampleGame/Stars.js"></script>
   <title>Keian's Portfolio Page</title>
 </head>
-<body>
+<body onload="Main()">
   <div class="wrapper">
     <header>
       <img src = "images/KeianProfile.jpg" alt="Keian Barton's Profile Picture">
@@ -25,7 +29,7 @@
               <button type="button" onclick="toggleCvPdf()">my CV</button>
               for more details.
             </p>
-            <iframe id="cvPDFFrame" style="display:none" height=500></iframe>
+            <iframe id="cvPdfFrame" style="display:none" height=500></iframe>
           </div>
           <div id="skills">
             <h3>Technologies</h3>
@@ -90,11 +94,11 @@
         </div>
       </li>
       <li>
-      <div style="flex: auto;" id="javaScriptExample">
-      <h3>JavaScript Example</h3>
-    </li>
-  </ul>
-    </div>
+        <div style="flex: auto;" id="javaScriptExample">
+          <h3>JavaScript Example</h3>
+        </div>
+      </li>
+    </ul>
   </div>
 </body>
 </html>
