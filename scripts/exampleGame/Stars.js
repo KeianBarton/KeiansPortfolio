@@ -5,18 +5,16 @@ function Stars(number,size,speed,sizeSpread) {
   this.size = size;
   this.speed = speed;
   this.sizeSpread = sizeSpread;
+  for (var i=1; i<=this.number; i++) {
+    var x = gameCanvas.width*Math.random();
+    var y = gameCanvas.height*Math.random();
+    var star = new Star(x,y,this.speed,this.size,this.sizeSpread);
+    star.draw();
+    Stars["star"+i] = star;
+  }
 }
 
 Stars.prototype = {
-  initialize: function() {
-    for (var i=1; i<=this.number; i++) {
-      var x = gameCanvas.width*Math.random();
-      var y = gameCanvas.height*Math.random();
-      var star = new Star(x,y,this.speed,this.size,this.sizeSpread);
-      star.draw();
-      Stars["star"+i] = star;
-    }
-  },
   updatePositions: function() {
     for (var i=1; i<=this.number; i++) {
       var star = Stars["star"+i];
