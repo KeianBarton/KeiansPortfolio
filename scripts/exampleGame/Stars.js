@@ -12,7 +12,7 @@ function Stars(number,size,speed,sizeSpread) {
     star.draw();
     Stars["star"+i] = star;
   }
-}
+};
 
 Stars.prototype = {
   updatePositions: function() {
@@ -36,8 +36,7 @@ function Star(x,y,speed,radius,sizeSpread) {
                     sizeSpread*Math.random();
   this.radius = multiplier*radius;
   this.speed = multiplier*speed;
-  ;
-}
+};
 
 Star.prototype = {
   updatePosition: function() {

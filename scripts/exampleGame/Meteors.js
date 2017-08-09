@@ -38,7 +38,7 @@ Meteor.prototype = {
     this.y = this.y + this.speed;
     this.angle += this.spin;
     if (this.y > gameCanvas.height + this.size) {
-      gameEngine.updateScore();
+      gameEngine.updateScore(100);
       this.remove();
     }
   },
