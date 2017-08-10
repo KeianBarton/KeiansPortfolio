@@ -37,19 +37,20 @@ Meteor.prototype = {
   updatePosition: function() {
     this.y = this.y + this.speed;
     this.angle += this.spin;
-    if (this.y > gameCanvas.height + this.size) {
+    if (this.y > gameCanvas.size + this.size) {
       gameEngine.updateScore(100);
       this.remove();
     }
   },
   draw: function() {
-    // Draw meteors using the canvas context
     var ctx = gameCanvas.context;
     // The meteor will be one of 5 images
     var imageName = "meteor"+this.meteorType.toString();
     var image = document.getElementById(imageName);
     ctx.save();
-    ctx.translate(this.x+this.size/2,this.y+this.size/2);
+    ctx.shadowBlur = this.size*2;
+    ctx.shadowColor = "orange";
+    ctx.translate(this.x,this.y);
     ctx.rotate(this.angle);
     ctx.drawImage(image,-this.size/2,-this.size/2,this.size,this.size);
     ctx.restore();

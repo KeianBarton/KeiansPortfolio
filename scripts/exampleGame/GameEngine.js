@@ -3,9 +3,11 @@
 var gameEngine = new GameEngine();
 var stars;
 var meteors;
+var ship;
+var cursor;
 
 function GameEngine() {
-  this.difficulty = 1;
+  this.difficultyFactor = 1;
   this.meteors = 0;
   this.score = 0;
   this.frame = 1;
@@ -27,8 +29,10 @@ function GameEngine() {
 };
 
 gameEngine.startNewGame = function() {
-  stars = new Stars(200,this.difficulty,0.5,1.5);
+  stars = new Stars(200,gameCanvas.size/400,this.difficultyFactor,1.5);
   meteors = new Meteors();
+  ship = new Ship();
+  cursor = new Cursor(gameCanvas.size/25);
 };
 
 // Controller functions
@@ -60,14 +64,14 @@ gameEngine.createMeteors = function() {
 gameEngine.createMeteor = function(number) {
   for (var i = 1; i<=number; i++){
     var meteorImage = Math.ceil(5*Math.random());
-    var meteorSize = gameCanvas.width/15+Math.random()*gameCanvas.width/15;
-    var meteorX = 0.05*gameCanvas.width+0.8*Math.random()*gameCanvas.width;
+    var meteorSize = gameCanvas.size/15+Math.random()*gameCanvas.size/15;
+    var meteorX = 0.1*gameCanvas.size+0.8*Math.random()*gameCanvas.size;
     var meteorY = -meteorSize;
     if (i>1) {
       // Adjust the starting point of meteors when multiple are created
-      meteorY = -meteorSize - Math.random()*gameCanvas.height;
+      meteorY = -meteorSize - Math.random()*gameCanvas.size;
     }
-    var meteorSpeed = gameEngine.difficulty;
+    var meteorSpeed = gameEngine.difficultyFactor;
     var meteor =
       new Meteor(meteorX,meteorY,meteorSpeed,meteorSize,meteorImage);
     meteors.add(meteor);
@@ -77,14 +81,14 @@ gameEngine.createMeteor = function(number) {
 
 gameEngine.updateScore = function(score) {
   this.score+=score;
-  this.updateDifficulty();
+  this.updateDifficultyFactor();
 };
 
-gameEngine.updateDifficulty = function() {
+gameEngine.updateDifficultyFactor = function() {
   if (this.score<25000) {
-    this.difficulty = 1+this.score/5000;
+    this.difficultyFactor = 1+this.score/6250;
   } else {
-    this.difficulty = 5;
+    this.difficultyFactor = 5;
   }
 }
 
@@ -103,9 +107,12 @@ gameEngine.updateFrame = function() {
 
   gameCanvas.isDimmed=false;
   ctx.globalAlpha = 1;
-  ctx.clearRect(0,0,gameCanvas.width,gameCanvas.height);
+  ctx.clearRect(0,0,gameCanvas.size,gameCanvas.size);
   stars.updatePositions();
   meteors.updatePositions();
+  ship.updatePosition();
+  cursor.updatePosition();
+
   gameEngine.frame++;
   gameEngine.timeBeforeNextMeteor -= 1000/gameCanvas.fps;
 };
