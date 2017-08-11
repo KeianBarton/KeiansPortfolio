@@ -9,7 +9,7 @@ function Stars(number,size,speed,sizeSpread) {
     var x = gameCanvas.size*Math.random();
     var y = gameCanvas.size*Math.random();
     var star = new Star(x,y,this.speed,this.size,this.sizeSpread);
-    star.draw();
+    gameView.drawStar(star);
     Stars["star"+i] = star;
   }
 };
@@ -18,8 +18,10 @@ Stars.prototype = {
   updatePositions: function() {
     for (var i=1; i<=this.number; i++) {
       var star = Stars["star"+i];
-      star.updatePosition();
-      star.draw();
+      if (!gameEngine.isPaused) {
+        star.updatePosition();
+      }
+      gameView.drawStar(star);
     }
   }
 };
@@ -46,12 +48,5 @@ Star.prototype = {
     if (this.y > gameCanvas.size){
       this.y = Math.floor(-50 + 50*Math.random());
     }
-  },
-  draw: function() {
-    var ctx = gameCanvas.context;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
-    ctx.fillStyle = "white";
-    ctx.fill();
   }
 };

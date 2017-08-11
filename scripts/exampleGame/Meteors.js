@@ -14,8 +14,10 @@ Meteors.prototype = {
   },
   updatePositions: function() {
     for (var i = 0; i<this.list.length; i++) {
-      this.list[i].updatePosition();
-      this.list[i].draw();
+      if (!gameEngine.isPaused) {
+        this.list[i].updatePosition();
+      }
+      gameView.drawMeteor(this.list[i]);
     }
   }
 };
@@ -30,7 +32,7 @@ function Meteor(x,y,speed,size,meteorType) {
   this.meteorType = meteorType;
   // meteor spin (per frame) is randomly assigned between -pi/fps and pi/fps
   this.angle = 0;
-  this.spin = Math.PI * (-1/gameCanvas.fps + Math.random()*2/gameCanvas.fps);
+  this.spin = Math.PI * (-1/gameEngine.fps + Math.random()*2/gameEngine.fps);
 };
 
 Meteor.prototype = {
@@ -41,19 +43,6 @@ Meteor.prototype = {
       gameEngine.updateScore(100);
       this.remove();
     }
-  },
-  draw: function() {
-    var ctx = gameCanvas.context;
-    // The meteor will be one of 5 images
-    var imageName = "meteor"+this.meteorType.toString();
-    var image = document.getElementById(imageName);
-    ctx.save();
-    ctx.shadowBlur = this.size*2;
-    ctx.shadowColor = "orange";
-    ctx.translate(this.x,this.y);
-    ctx.rotate(this.angle);
-    ctx.drawImage(image,-this.size/2,-this.size/2,this.size,this.size);
-    ctx.restore();
   },
   remove: function() {
     gameEngine.meteors--;
