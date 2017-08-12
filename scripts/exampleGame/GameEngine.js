@@ -128,10 +128,17 @@ GameEngine.prototype = {
       this.difficultyFactor = 5;
     }
   },
-  updateMouse: function(e) {
+  updateCursorPosition: function(e) {
     gameView.disableMouse();
-    gameEngine.mouseX =e.clientX-gameCanvas.canvas.getBoundingClientRect().left;
-    gameEngine.mouseY = e.clientY-gameCanvas.canvas.getBoundingClientRect().top;
+    if (!gameEngine.isMobile) {
+      gameEngine.mouseX =e.clientX-gameCanvas.canvas.getBoundingClientRect().left;
+      gameEngine.mouseY = e.clientY-gameCanvas.canvas.getBoundingClientRect().top;
+    } else {
+      var touchList = e.changedTouches;
+      var lastTouch = touchList[touchList.length-1];
+      gameEngine.mouseX = lastTouch.pageX-gameCanvas.canvas.getBoundingClientRect().left;
+      gameEngine.mouseY = lastTouch.pageY-gameCanvas.canvas.getBoundingClientRect().top;
+    }
   },
   handleClick: function(e) {
     e.preventDefault();
