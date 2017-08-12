@@ -14,6 +14,7 @@ GameCanvas.prototype = {
     document.getElementById("javaScriptExample").appendChild(this.canvas);
 
     this.canvas.addEventListener("touchend",gameEngine.handleTouchEnd);
+    this.canvas.addEventListener("touchstart",gameEngine.handleClick);
     this.canvas.addEventListener("click",gameEngine.handleClick);
 
     this.canvas.addEventListener("mousemove",gameEngine.updateMouse);
