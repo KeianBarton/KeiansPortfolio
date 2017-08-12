@@ -146,10 +146,12 @@ GameEngine.prototype = {
       }
       return;
     }
-    if (gameEngine.isPaused) {
-      gameEngine.unpause();
-    } else {
-      gameEngine.pause();
+    if (!gameEngine.isMobile) {
+      if (gameEngine.isPaused) {
+        gameEngine.unpause();
+      } else {
+        gameEngine.pause();
+      }      
     }
   },
   pause: function() {

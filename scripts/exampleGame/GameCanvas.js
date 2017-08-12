@@ -16,10 +16,10 @@ GameCanvas.prototype = {
     this.canvas.addEventListener("click",gameEngine.handleClick);
 
     this.canvas.addEventListener("mousemove",gameEngine.updateMouse);
+    this.canvas.addEventListener("touchmove",gameEngine.updateMouse);
     this.canvas.addEventListener("mouseleave",gameEngine.updateMouse);
 
     this.canvas.addEventListener("mousedown",this.stopEvent);
-    this.canvas.addEventListener("touchmove",this.stopEvent);
     this.canvas.addEventListener("contextmenu",this.stopEvent);
 
   },
