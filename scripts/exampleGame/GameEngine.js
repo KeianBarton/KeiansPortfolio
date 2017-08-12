@@ -146,13 +146,22 @@ GameEngine.prototype = {
       }
       return;
     }
-    if (!gameEngine.isMobile) {
+    if (gameEngine.isMobile) {
+      if (gameEngine.isNewGame || gameEngine.isPaused) {
+        gameEngine.unpause();
+      }
+    } else {
       if (gameEngine.isPaused) {
         gameEngine.unpause();
       } else {
         gameEngine.pause();
-      }      
+      }
     }
+  },
+  handleTouchEnd: function(e) {
+    e.preventDefault();
+    // On mobile devices, disable pausing by clicking
+    gameEngine.pause();
   },
   pause: function() {
     gameCanvas.isDimmed = true;
