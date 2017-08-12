@@ -10,6 +10,8 @@ Cursor.prototype = {
   updatePosition: function() {
     this.x = gameEngine.mouseX;
     this.y = gameEngine.mouseY;
-    gameView.drawCursor(this);
+    if (!gameEngine.isMobile) {
+      gameView.drawCursor(this);
+    }
   }
 };

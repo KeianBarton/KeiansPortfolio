@@ -168,7 +168,9 @@ GameEngine.prototype = {
   handleTouchEnd: function(e) {
     e.preventDefault();
     // On mobile devices, disable pausing by clicking
-    gameEngine.pause();
+    if (!gameEngine.isGameOver) {
+      gameEngine.pause();
+    }
   },
   pause: function() {
     gameCanvas.isDimmed = true;
