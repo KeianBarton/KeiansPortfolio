@@ -165,10 +165,11 @@ GameEngine.prototype = {
       }
     }
   },
-  handleTouchEnd: function(e) {
-    e.preventDefault();
-    // On mobile devices, disable pausing by clicking
-    if (!gameEngine.isGameOver) {
+  handleClicksOutsideGame: function(e) {
+    var gameCanvas = document.getElementById("javaScriptGameArea");
+    var clickIsOutsideFrame = !gameCanvas.contains(e.target);
+    if (clickIsOutsideFrame && gameEngine.isMobile && !gameEngine.isGameOver) {
+      // On mobile devices, pause the game by clicking outside frame
       gameEngine.pause();
     }
   },

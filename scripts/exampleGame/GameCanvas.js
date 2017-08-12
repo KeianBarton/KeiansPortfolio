@@ -11,9 +11,10 @@ GameCanvas.prototype = {
     this.canvas.width = this.size;
     this.canvas.height = this.size;
     this.context = this.canvas.getContext("2d");
-    document.getElementById("javaScriptExample").appendChild(this.canvas);
 
-    this.canvas.addEventListener("touchend",gameEngine.handleTouchEnd);
+    document.getElementById("javaScriptExample").appendChild(this.canvas);
+    document.addEventListener("click",gameEngine.handleClicksOutsideGame);
+
     this.canvas.addEventListener("touchstart",gameEngine.handleClick);
     this.canvas.addEventListener("click",gameEngine.handleClick);
 
