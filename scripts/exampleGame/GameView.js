@@ -1,9 +1,4 @@
-var flashTextSetInterval;
-
 function GameView() {
-  this.scoreTextY = 0.085*gameCanvas.size;
-  this.isTextFlashingOnScreen = true;
-  flashTextSetInterval = setInterval(this.toggleFlashingText,500);
 };
 
 GameView.prototype = {
@@ -104,9 +99,6 @@ GameView.prototype = {
     ctx.fillRect(0,0,gameCanvas.size,gameCanvas.size);
     ctx.restore();
   },
-  toggleFlashingText: function() {
-    gameView.isTextFlashingOnScreen = !gameView.isTextFlashingOnScreen;
-  },
   drawShipExplosion: function() {
     var ctx = gameCanvas.context;
     var se = shipExplosion;
@@ -171,15 +163,29 @@ GameView.prototype = {
     var fontSize4 = 0.06*gameCanvas.size;
     var fontString4 = "bold "+fontSize4.toString()+"px Courier New";
     var fontX4 = 0.18*gameCanvas.size;
-    var fontY4 = 0.5*gameCanvas.size + 1.3*fontReferenceSize;
+    var fontY4 = 0.5*gameCanvas.size + 1.8*fontReferenceSize;
     var text4 = "CLICK/TAP TO START";
 
     this.drawText(fontX1,fontY1,fontSize1,fontString1,text1,fontColour1);
-    this.drawText(fontX2,fontY2,fontSize2,fontString2,text2,fontColour2);
-    this.drawText(fontX3,fontY3,fontSize3,fontString3,text3,fontColour3);
-    if (gameView.isTextFlashingOnScreen) {
+    this.drawGameTitle();
+    // These can be used in case you do not wish to use an image title
+    //this.drawText(fontX2,fontY2,fontSize2,fontString2,text2,fontColour2);
+    //this.drawText(fontX3,fontY3,fontSize3,fontString3,text3,fontColour3);
+    if (gameEngine.isTextFlashingOnScreen) {
       this.drawText(fontX4,fontY4,fontSize4,fontString4,text4,fontColour4);
     }
+  },
+  drawGameTitle: function() {
+    var ctx = gameCanvas.context;
+    ctx.save();
+    var imageName = "gameTitle";
+    var image = document.getElementById(imageName);
+    var titleX = 0.06*gameCanvas.size;
+    var titleY = gameEngine.titleY;
+    var titleWidth = 0.9*gameCanvas.size;
+    var titleHeight = 0.45*gameCanvas.size;
+    ctx.drawImage(image,titleX,titleY,titleWidth,titleHeight);
+    ctx.restore();
   },
   drawGameOverText: function() {
     var fontColour1 = "red";
@@ -205,7 +211,7 @@ GameView.prototype = {
 
     this.drawText(fontX1,fontY1,fontSize1,fontString1,text1,fontColour1);
     this.drawText(fontX2,fontY2,fontSize2,fontString2,text2,fontColour2);
-    if (gameView.isTextFlashingOnScreen) {
+    if (gameEngine.isTextFlashingOnScreen) {
       this.drawText(fontX3,fontY3,fontSize3,fontString3,text3,fontColour3);
     }
   },
@@ -215,7 +221,7 @@ GameView.prototype = {
       startScreenMeteor.updatePosition();
       gameView.drawStartGameText();
     } else {
-      gameView.drawScoreText(gameView.scoreTextY);
+      gameView.drawScoreText(gameEngine.scoreTextY);
       gameView.dimFrame();
 
       var fontColour1 = "white";
@@ -232,7 +238,7 @@ GameView.prototype = {
       var fontY2 = 0.5*gameCanvas.size + 0.5*fontSize1;
       var text2 = "CLICK/TAP TO CONTINUE";
       this.drawText(fontX1,fontY1,fontSize1,fontString1,text1,fontColour1);
-      if (gameView.isTextFlashingOnScreen) {
+      if (gameEngine.isTextFlashingOnScreen) {
         this.drawText(fontX2,fontY2,fontSize2,fontString2,text2,fontColour2);
       }
     }

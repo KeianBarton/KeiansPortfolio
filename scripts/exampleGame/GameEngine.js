@@ -7,6 +7,8 @@ var shipExplosion;
 var cursor;
 var updateFrameSetInterval;
 var createMeteorsSetInterval;
+var flashTextSetInterval;
+var titleYSetInterval;
 var pauseBeforeGameOverScreenSetTimeout;
 
 function GameEngine(fps, isMobile) {
@@ -41,6 +43,12 @@ GameEngine.prototype = {
     this.timeBeforeNextMeteor = this.difficultyProgression[0][0];
     this.mouseX = -1;
     this.mouseY = -1;
+
+    // View related variables e.g. title text y
+    this.scoreTextY = 0.085*gameCanvas.size;
+    this.isTextFlashingOnScreen = true;
+    this.titleY = 0.268*gameCanvas.size;
+    this.isTitleMovingUp = true;
   },
   startNewGame: function() {
     gameView = new GameView();
@@ -69,6 +77,8 @@ GameEngine.prototype = {
 
     updateFrameSetInterval = setInterval(this.updateFrame,1000/this.fps);
     createMeteorsSetInterval = setInterval(this.createMeteors,1000/this.fps);
+    flashTextSetInterval = setInterval(this.toggleFlashingText,500);
+    titleYSetInterval = setInterval(this.moveGameTitle,1000/this.fps);
   },
   resetGame: function() {
     this.setGameEngineValues();
@@ -145,6 +155,7 @@ GameEngine.prototype = {
     if (gameEngine.isGameOver) {
       if (gameView.showGameOverFrame) {
         clearInterval(flashTextSetInterval);
+        clearInterval(titleYSetInterval);
         clearInterval(updateFrameSetInterval);
         clearInterval(createMeteorsSetInterval);
         clearTimeout(pauseBeforeGameOverScreenSetTimeout);
@@ -203,11 +214,29 @@ GameEngine.prototype = {
         }
       }
       gameEngine.isDimmed = false;
-      gameView.drawScoreText(gameView.scoreTextY);
+      gameView.drawScoreText(gameEngine.scoreTextY);
       gameEngine.timeBeforeNextMeteor -= 1000/gameEngine.fps;
       if (gameEngine.frame>1) { gameEngine.isNewGame = false; }
       gameEngine.frame++;
     }
     cursor.updatePosition();
+  },
+  toggleFlashingText: function() {
+    gameEngine.isTextFlashingOnScreen = !gameEngine.isTextFlashingOnScreen;
+  },
+  moveGameTitle: function() {
+    if (gameEngine.isTitleMovingUp) {
+      gameEngine.titleY -= 0.0002*gameCanvas.size;
+    } else {
+      gameEngine.titleY += 0.0002*gameCanvas.size;
+    }
+    if (gameEngine.titleY < 0.255*gameCanvas.size) {
+      gameEngine.isTitleMovingUp = false;
+      return;
+    }
+    if (gameEngine.titleY > 0.28*gameCanvas.size) {
+      gameEngine.isTitleMovingUp = true;
+      return;
+    }
   }
 };

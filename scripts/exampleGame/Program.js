@@ -3,8 +3,8 @@ var gameEngine;
 
 function Main() {
   var isMobile = BrowserIsMobile();
-  var canvasSize = isMobile ? 300 : 640;
-  var fps = isMobile ? 40 : 60;
+  var canvasSize = isMobile ? 300 : 640; // configurable
+  var fps = isMobile ? 60 : 60; // configurable
   gameCanvas = new GameCanvas(canvasSize);
   gameEngine = new GameEngine(fps,isMobile);
   gameCanvas.createCanvas();
