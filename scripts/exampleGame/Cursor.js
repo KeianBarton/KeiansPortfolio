@@ -1,15 +1,15 @@
-// For mouse update positions and cursor hiding, see the game canvas
+// For mouse update positions and cursor hiding, see the game engine and view
 
-function Cursor(size) {
-  this.x = gameCanvas.size/2;
-  this.y = gameCanvas.size/2;
+function Cursor(x,y,size) {
+  this.x = x;
+  this.y = y;
   this.size = size;
 };
 
 Cursor.prototype = {
   updatePosition: function() {
-    this.x = gameEngine.mousex;
-    this.y = gameEngine.mousey;
+    this.x = gameEngine.mouseX;
+    this.y = gameEngine.mouseY;
     gameView.drawCursor(this);
   }
 };

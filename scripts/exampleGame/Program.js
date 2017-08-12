@@ -1,12 +1,30 @@
 var gameCanvas;
 var gameEngine;
-var gameView;
 
 function Main() {
-  gameCanvas = new GameCanvas(300);
-  gameEngine = new GameEngine(60);
-  gameView = new GameView();
+  var isMobile = BrowserIsMobile();
+  var canvasSize = isMobile ? 300 : 640;
+  var fps = isMobile ? 40 : 60;
+  gameCanvas = new GameCanvas(canvasSize);
+  gameEngine = new GameEngine(fps,isMobile);
   gameCanvas.createCanvas();
   gameEngine.startNewGame();
-  gameEngine.startGameplay();
 };
+
+// Logic used from
+// https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
+function BrowserIsMobile() {
+ if( navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ ){
+    return true;
+  }
+ else {
+    return false;
+  }
+}

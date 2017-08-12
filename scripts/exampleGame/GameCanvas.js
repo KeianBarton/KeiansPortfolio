@@ -13,7 +13,7 @@ GameCanvas.prototype = {
     this.context = this.canvas.getContext("2d");
     document.getElementById("javaScriptExample").appendChild(this.canvas);
 
-    this.canvas.addEventListener("click",gameEngine.togglePauseOnClick);
+    this.canvas.addEventListener("click",gameEngine.handleClick);
 
     this.canvas.addEventListener("mousemove",gameEngine.updateMouse);
     this.canvas.addEventListener("mouseleave",gameEngine.updateMouse);
