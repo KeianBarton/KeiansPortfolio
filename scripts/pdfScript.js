@@ -5,5 +5,5 @@ function toggleCvPdf() {
     return;
   }
   pdfFrame.style.display = "block";
-  pdfFrame.src = "./cv/KeianBartonCVAug2017.pdf";
+  pdfFrame.src = "./cv/KeianBartonCVOct2017.pdf";
 }
